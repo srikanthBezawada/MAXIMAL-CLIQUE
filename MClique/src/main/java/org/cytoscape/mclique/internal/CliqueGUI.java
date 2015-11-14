@@ -10,6 +10,7 @@ import java.awt.Component;
 import javax.swing.Icon;
 import org.cytoscape.application.CyApplicationManager;
 import org.cytoscape.application.swing.CySwingApplication;
+import org.cytoscape.application.swing.CytoPanelComponent;
 import org.cytoscape.application.swing.CytoPanelName;
 import org.cytoscape.mclique.internal.logic.CliqueThread;
 import org.cytoscape.model.CyNetwork;
@@ -19,7 +20,7 @@ import org.cytoscape.view.model.CyNetworkView;
  *
  * @author Sony
  */
-public class CliqueGUI extends javax.swing.JPanel {
+public class CliqueGUI extends javax.swing.JPanel implements CytoPanelComponent{
     private CliqueCore cliquecore;
     public CliqueThread logicThread;
     CyApplicationManager cyApplicationManager;
@@ -37,14 +38,17 @@ public class CliqueGUI extends javax.swing.JPanel {
         cyApplicationManager = cliquecore.getCyApplicationManager();
         cyDesktopService = cliquecore.getCyDesktopService();
     }
+    @Override
     public Icon getIcon() {
         return null;
     }
     
+    @Override
     public String getTitle() {
         return "MClique";
     }
     
+    @Override
     public CytoPanelName getCytoPanelName() {
         return CytoPanelName.WEST;
     }

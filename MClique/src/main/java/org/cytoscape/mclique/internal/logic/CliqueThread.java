@@ -48,7 +48,12 @@ public class CliqueThread extends Thread{
     }
     
     public void captureClique(List<CyNode> R){
-        // Print nodes in R
+        System.out.println("Start");
+        for(CyNode cur : R){
+            System.out.println(currentnetwork.getRow(cur).get(CyNetwork.NAME, String.class));
+            System.out.println("\n");
+        }
+        System.out.println("End");
     
     }
     
