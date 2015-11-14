@@ -25,13 +25,15 @@ public class CliqueThread extends Thread{
         List<CyNode> R = new ArrayList<CyNode>();
         List<CyNode> P = currentnetwork.getNodeList();
         System.out.println("11");
-        Bron_KerboschWithPivot(X, R, P);
+        Bron_KerboschWithPivot(R, P, X);
          
         
     }
     
     public void Bron_KerboschWithPivot(List<CyNode> R, List<CyNode> P, List<CyNode> X){
+        System.out.println("Entering recursive method");
         if(P.size() == 0 && X.size()==0){
+            System.out.println("Clique found \n");
             captureClique(R);
             return;
         }
