@@ -24,6 +24,7 @@ public class CliqueThread extends Thread{
         List<CyNode> X = new ArrayList<CyNode>();
         List<CyNode> R = new ArrayList<CyNode>();
         List<CyNode> P = currentnetwork.getNodeList();
+        System.out.println("11");
         Bron_KerboschWithPivot(X, R, P);
          
         

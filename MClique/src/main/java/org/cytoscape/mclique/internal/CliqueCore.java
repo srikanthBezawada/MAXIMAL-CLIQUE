@@ -18,7 +18,7 @@ public class CliqueCore {
     public CyServiceRegistrar cyServiceRegistrar;
     public CyActivator cyactivator;
     private static CliqueGUI startmenu;
-    CliqueCore(CyActivator cyactivator){
+    public CliqueCore(CyActivator cyactivator){
         this.cyactivator = cyactivator;
         this.cyApplicationManager = cyactivator.cyApplicationManager;
         this.cyDesktopService = cyactivator.cyDesktopService;
@@ -53,7 +53,7 @@ public class CliqueCore {
         return startmenu;
     }
 
-    public void closeTieDieStartMenu() {
+    public void closeCliqueStartMenu() {
         cyServiceRegistrar.unregisterService(startmenu, CytoPanelComponent.class);
     }
 
