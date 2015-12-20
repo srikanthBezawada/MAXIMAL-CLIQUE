@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
 public class CyActivator extends AbstractCyActivator {
     private static CyAppAdapter appAdapter;
     private static CyEventHelper eventHelper;
-    public CyApplicationManager cyApplicationManager;
+    public static CyApplicationManager cyApplicationManager;
     public CySwingApplication cyDesktopService;
     public CyServiceRegistrar cyServiceRegistrar;
     public MenuAction menuaction;
@@ -58,10 +58,15 @@ public class CyActivator extends AbstractCyActivator {
         return cyServiceRegistrar;
     }
 
-    public CyApplicationManager getcyApplicationManager() {
+    public static CyApplicationManager getcyApplicationManager() {
         return cyApplicationManager;
     }
-
+    
+    public static CyNetworkManager getcyNetworkManager(){
+        return networkManager;
+    } 
+    
+    
     public CySwingApplication getcytoscapeDesktopService() {
         return cyDesktopService;
     }

@@ -85,10 +85,17 @@ public class CliqueThread extends Thread{
                 row.set("selected", false);
             }
         }
-        for(CyNode n : subnodeList){
+        
+        for(CyNode n : network.getNodeList()){
             CyRow row = nTable.getRow(n.getSUID());
-            row.set("selected", true);
+            if(subnodeList.contains(n)){
+                row.set("selected", true);
+            } else{
+                row.set("selected", false);
+            }
+            
         }
+        
         // create the network
         if(YESb == true){
             NewNetworkSelectedNodesAndEdgesTaskFactory f = CyActivator.adapter.
@@ -110,7 +117,7 @@ public class CliqueThread extends Thread{
                     maxSUID = net.getSUID();
             }
             this.subNetwork = CyActivator.networkManager.getNetwork(maxSUID);
-            subNetwork.getRow(subNetwork).set(CyNetwork.NAME, currentNetworkName + " Biggest Maximal Clique");         
+            subNetwork.getRow(subNetwork).set(CyNetwork.NAME, currentNetworkName + "_BiggestMaximalClique");         
         
         }
         
