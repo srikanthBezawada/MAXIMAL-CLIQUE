@@ -5,6 +5,11 @@ import org.cytoscape.application.CyApplicationManager;
 import org.cytoscape.application.swing.AbstractCyAction;
 import org.cytoscape.application.swing.CySwingApplication;
 
+/**
+ * @author SrikanthB
+ *
+ */
+
 public class MenuAction extends AbstractCyAction {
     public CyApplicationManager cyApplicationManager;
     public CySwingApplication cyDesktopService;

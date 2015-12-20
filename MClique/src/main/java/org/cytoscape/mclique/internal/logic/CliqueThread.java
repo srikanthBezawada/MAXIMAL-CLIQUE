@@ -1,105 +1,124 @@
 package org.cytoscape.mclique.internal.logic;
 
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.cytoscape.mclique.internal.CliqueGUI;
+import org.cytoscape.mclique.internal.CyActivator;
 import org.cytoscape.model.CyEdge;
 import org.cytoscape.model.CyNetwork;
 import org.cytoscape.model.CyNode;
+import org.cytoscape.model.CyRow;
+import org.cytoscape.model.CyTable;
+import org.cytoscape.task.create.NewNetworkSelectedNodesAndEdgesTaskFactory;
 import org.cytoscape.view.model.CyNetworkView;
+import org.cytoscape.work.TaskIterator;
+import org.jgrapht.alg.BronKerboschCliqueFinder;
+
+/**
+ * @author SrikanthB
+ *
+ */
 
 public class CliqueThread extends Thread{
     
     public CyNetwork currentnetwork;
     public CyNetworkView currentnetworkview;
-    public CliqueThread(CyNetwork currentnetwork, CyNetworkView currentnetworkview){
+    boolean YESb;
+    CliqueGUI menu;
+    public CyNetwork subNetwork = null;
+    
+    public CliqueThread(CliqueGUI menu, CyNetwork currentnetwork, CyNetworkView currentnetworkview, boolean YESb){
+        this.menu = menu;
         this.currentnetwork = currentnetwork;
         this.currentnetworkview = currentnetworkview;
+        this.YESb = YESb;
     }
     
     @Override
     public void run(){
-        List<CyNode> X = new ArrayList<CyNode>();
-        List<CyNode> R = new ArrayList<CyNode>();
-        List<CyNode> P = currentnetwork.getNodeList();
-        System.out.println("11");
-        Bron_KerboschWithPivot(R, P, X);
-         
-        
-    }
-    
-    public void Bron_KerboschWithPivot(List<CyNode> R, List<CyNode> P, List<CyNode> X){
-        System.out.println("Entering recursive method");
-        if(P.size() == 0 && X.size()==0){
-            System.out.println("Clique found \n");
-            captureClique(R);
-            return;
+        menu.startComputation();
+        UndirectedGraph<CyNode, Object> g = new SimpleGraph<CyNode, Object>(Object.class);
+        List<CyNode> nodeList = currentnetwork.getNodeList();
+        List<CyEdge> edgeList = currentnetwork.getEdgeList();
+        for(CyNode n : nodeList){
+            g.addVertex(n);
         }
-        List<CyNode> P1 = new ArrayList<CyNode>(P);
-        CyNode u = getMaxDegreeVertex(union(P,X));
-        P = removeNbrs(P, u); 
-        for(CyNode v : P){
-            R.add(v);
-            Bron_KerboschWithPivot(R, intersect(P1, currentnetwork.getNeighborList(v, CyEdge.Type.ANY)), intersect(X, currentnetwork.getNeighborList(v, CyEdge.Type.ANY)));
-            R.remove(v); 
-            P1.remove(v); 
-            X.add(v); 
+        for(CyEdge e : edgeList){
+            g.addEdge(e.getSource(), e.getTarget());
         }
- 
-    }
-    
-    public void captureClique(List<CyNode> R){
-        System.out.println("Start");
-        for(CyNode cur : R){
-            System.out.println(currentnetwork.getRow(cur).get(CyNetwork.NAME, String.class));
-            System.out.println("\n");
-        }
-        System.out.println("End");
-    
-    }
-    
-    public static <T> List<T> union(List<T> listA, List<T> listB) {
-            List<T> output = new ArrayList<T>();
-            Set<T> tmp = new HashSet<T>(listA);
-            tmp.addAll(listB);
-            output.addAll(tmp);
-            return output;
-    }
-    
-    public static <T> List<T> intersect(List<T> listA, List<T> listB) {
-            List<T> output = new ArrayList<T>();
-            Set<T> tmp = new HashSet<T>(listA);
-            for (T x : listA)
-            if (listB.contains(x))
-                tmp.add(x);
-            output.addAll(tmp);
-            return output; 
-    }
-    
-    CyNode getMaxDegreeVertex(List<CyNode> g){
-        CyNode output=null;
-        ListIterator<CyNode> itr; 
-        itr = g.listIterator();
-        CyNode curr;
-        int maxDegree = Integer.MIN_VALUE;
-        while(itr.hasNext()){
-            curr = itr.next();
-            int currDegree = currentnetwork.getNeighborList(curr, CyEdge.Type.ANY).size();
-            if(currDegree > maxDegree){
-                maxDegree = currDegree;
-                output = curr;
+        BronKerboschCliqueFinder bcfinder = new BronKerboschCliqueFinder(g);
+        List<Set<CyNode>> requiredNodeSets = (List<Set<CyNode>>) bcfinder.getBiggestMaximalCliques();
+        // TODO : Iterate through all sets
+        Set<CyNode> requiredNodeSet = requiredNodeSets.get(0);
+        List<CyNode> requiredNodes = new ArrayList<CyNode>();
+        requiredNodes.addAll(requiredNodeSet);
+        List<CyEdge> requiredEdges = new ArrayList<CyEdge>();
+        for(CyEdge e : edgeList){
+            if(requiredNodes.contains(e.getSource()) && requiredNodes.contains(e.getTarget())){
+                requiredEdges.add(e);
             }
         }
-        
-        return output;
+
+        createNetwork(currentnetwork, requiredNodes, requiredEdges, YESb);
+        menu.endComputation();
     }
     
-    List<CyNode> removeNbrs(List<CyNode> arlFirst, CyNode v){
-        List<CyNode> arlHold = new ArrayList<CyNode>(arlFirst); 
-        arlHold.removeAll(currentnetwork.getNeighborList(v, CyEdge.Type.ANY)); 
-        return arlHold; 
+    
+    public void createNetwork(CyNetwork network, List<CyNode> subnodeList, List<CyEdge> subedgeList, boolean YESb){
+        // select the nodes and edges
+        CyTable nTable = network.getDefaultNodeTable();
+        CyTable eTable = network.getDefaultEdgeTable();
+        List<CyEdge> elist = network.getEdgeList();
+        for(CyEdge e : elist){
+            if(subedgeList.contains(e)){
+                CyRow row = eTable.getRow(e.getSUID());
+                row.set("selected", true);
+            }
+            else{
+                CyRow row = eTable.getRow(e.getSUID());
+                row.set("selected", false);
+            }
+        }
+        for(CyNode n : subnodeList){
+            CyRow row = nTable.getRow(n.getSUID());
+            row.set("selected", true);
+        }
+        // create the network
+        if(YESb == true){
+            NewNetworkSelectedNodesAndEdgesTaskFactory f = CyActivator.adapter.
+                get_NewNetworkSelectedNodesAndEdgesTaskFactory();
+            TaskIterator itr = f.createTaskIterator(network);
+            CyActivator.adapter.getTaskManager().execute(itr);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(CliqueThread.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            // set the name of the network
+            this.menu.calculatingresult("Created! Renaming the network...");
+            String currentNetworkName = network.getRow(network).get(CyNetwork.NAME, String.class);
+            Set<CyNetwork> allnetworks = CyActivator.networkManager.getNetworkSet();
+            long maxSUID = Integer.MIN_VALUE;
+            for(CyNetwork net : allnetworks){
+                if(net.getSUID() > maxSUID)
+                    maxSUID = net.getSUID();
+            }
+            this.subNetwork = CyActivator.networkManager.getNetwork(maxSUID);
+            subNetwork.getRow(subNetwork).set(CyNetwork.NAME, currentNetworkName + " Biggest Maximal Clique");         
+        
+        }
+        
+        
     }
+    
+   
+    
+    
     
 }

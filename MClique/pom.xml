@@ -8,10 +8,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.cytoscape</groupId>
-	<artifactId>mclique</artifactId>
-	<version>0.9</version>
+	<artifactId>Mclique</artifactId>
+	<version>1.0</version>
 
-			<name>mclique</name>
+			<name>Mclique</name>
 	
 	<packaging>bundle</packaging>
 
@@ -170,12 +170,6 @@
 	  <version>2.2.2</version>
 	  <scope>provided</scope>
 	 </dependency>
-	 <dependency>
-	  <groupId>org.jblas</groupId>
-	  <artifactId>jblas</artifactId>
-	  <version>1.2.3</version>
-	  <type>jar</type>
-	 </dependency>
 	
 	 <dependency>
 	  <groupId>org.cytoscape</groupId>
@@ -196,10 +190,12 @@
             <artifactId>event-api</artifactId>
             <version>3.0.0</version>
         </dependency>
+	
 	 <dependency>
-	  <groupId>gov.sandia.foundry</groupId>
-	  <artifactId>gov-sandia-cognition-common-core</artifactId>
-	  <version>3.4.1</version>
+	  <groupId>org.jgrapht</groupId>
+	  <artifactId>jgrapht-core</artifactId>
+	  <version>0.9.0</version>
+	  <type>jar</type>
 	 </dependency>
 	</dependencies>
         

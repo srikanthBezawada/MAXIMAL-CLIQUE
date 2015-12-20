@@ -10,6 +10,11 @@ import org.cytoscape.model.CyNetwork;
 import org.cytoscape.service.util.CyServiceRegistrar;
 import org.cytoscape.view.model.CyNetworkView;
 
+/**
+ * @author SrikanthB
+ *
+ */
+
 public class CliqueCore {
     public CyNetwork network;
     public CyNetworkView view;

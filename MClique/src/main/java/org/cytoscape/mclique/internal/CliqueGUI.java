@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.cytoscape.mclique.internal;
 
@@ -17,9 +12,10 @@ import org.cytoscape.model.CyNetwork;
 import org.cytoscape.view.model.CyNetworkView;
 
 /**
+ * @author SrikanthB
  *
- * @author Sony
  */
+
 public class CliqueGUI extends javax.swing.JPanel implements CytoPanelComponent{
     private CliqueCore cliquecore;
     public CliqueThread logicThread;
@@ -65,62 +61,275 @@ public class CliqueGUI extends javax.swing.JPanel implements CytoPanelComponent{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        startButton = new javax.swing.JButton();
-        exitButton = new javax.swing.JButton();
+        parentPanel = new javax.swing.JPanel();
+        startB = new javax.swing.JButton();
+        headingLabel = new javax.swing.JLabel();
+        networkPanel = new javax.swing.JPanel();
+        netVariable = new javax.swing.JLabel();
+        urlReadDropdown = new javax.swing.JComboBox();
+        questionPanel = new javax.swing.JPanel();
+        YESbutton = new javax.swing.JRadioButton();
+        NObutton = new javax.swing.JRadioButton();
+        helpExitPanel = new javax.swing.JPanel();
+        helpB = new javax.swing.JButton();
+        exitB = new javax.swing.JButton();
+        statusPanel = new javax.swing.JPanel();
+        statusBar = new javax.swing.JProgressBar();
+        statusLabel = new javax.swing.JLabel();
 
-        startButton.setText("Start");
-        startButton.addActionListener(new java.awt.event.ActionListener() {
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        parentPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        startB.setText("Find BiggestMaximalClique on selected network");
+        startB.setToolTipText("Make sure you imported the table files and selected the corresponding columns");
+        startB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        startB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startButtonActionPerformed(evt);
+                startBActionPerformed(evt);
             }
         });
 
-        exitButton.setText("Exit");
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
+        headingLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        headingLabel.setForeground(new java.awt.Color(255, 0, 51));
+        headingLabel.setText("     BMClique");
+
+        networkPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Select the network"));
+
+        netVariable.setText("Network");
+
+        urlReadDropdown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout networkPanelLayout = new javax.swing.GroupLayout(networkPanel);
+        networkPanel.setLayout(networkPanelLayout);
+        networkPanelLayout.setHorizontalGroup(
+            networkPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(networkPanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(netVariable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(urlReadDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        networkPanelLayout.setVerticalGroup(
+            networkPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(networkPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(networkPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(netVariable)
+                    .addComponent(urlReadDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        questionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Extract BMCliques as subnetworks"));
+
+        YESbutton.setText("YES");
+        YESbutton.setSelected(true);
+
+        NObutton.setText("NO");
+
+        javax.swing.GroupLayout questionPanelLayout = new javax.swing.GroupLayout(questionPanel);
+        questionPanel.setLayout(questionPanelLayout);
+        questionPanelLayout.setHorizontalGroup(
+            questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(questionPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(YESbutton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NObutton)
+                .addGap(33, 33, 33))
+        );
+        questionPanelLayout.setVerticalGroup(
+            questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(questionPanelLayout.createSequentialGroup()
+                .addGroup(questionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(YESbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NObutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        helpExitPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        helpB.setForeground(new java.awt.Color(0, 200, 0));
+        helpB.setText("Help");
+        helpB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitButtonActionPerformed(evt);
+                helpBActionPerformed(evt);
             }
         });
+
+        exitB.setForeground(new java.awt.Color(200, 0, 0));
+        exitB.setText("Exit");
+        exitB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitBActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout helpExitPanelLayout = new javax.swing.GroupLayout(helpExitPanel);
+        helpExitPanel.setLayout(helpExitPanelLayout);
+        helpExitPanelLayout.setHorizontalGroup(
+            helpExitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(helpExitPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(helpB, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exitB, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        helpExitPanelLayout.setVerticalGroup(
+            helpExitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, helpExitPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(helpExitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(exitB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(helpB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        statusPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Status bar"));
+
+        statusLabel.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        statusLabel.setText("status");
+
+        javax.swing.GroupLayout statusPanelLayout = new javax.swing.GroupLayout(statusPanel);
+        statusPanel.setLayout(statusPanelLayout);
+        statusPanelLayout.setHorizontalGroup(
+            statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statusPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                    .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        statusPanelLayout.setVerticalGroup(
+            statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statusPanelLayout.createSequentialGroup()
+                .addComponent(statusBar, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout parentPanelLayout = new javax.swing.GroupLayout(parentPanel);
+        parentPanel.setLayout(parentPanelLayout);
+        parentPanelLayout.setHorizontalGroup(
+            parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(parentPanelLayout.createSequentialGroup()
+                .addGroup(parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(parentPanelLayout.createSequentialGroup()
+                            .addGap(65, 65, 65)
+                            .addGroup(parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(networkPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(questionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(startB, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, parentPanelLayout.createSequentialGroup()
+                            .addGap(38, 38, 38)
+                            .addGroup(parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(helpExitPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(statusPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(parentPanelLayout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+        parentPanelLayout.setVerticalGroup(
+            parentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, parentPanelLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(headingLabel)
+                .addGap(18, 18, 18)
+                .addComponent(networkPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(questionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(startB, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(helpExitPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(262, Short.MAX_VALUE))
+        );
+
+        questionPanel.getAccessibleContext().setAccessibleName("Extract BMCliques as subnetworks");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(startButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(107, 107, 107))
+            .addGap(0, 446, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(156, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startButton)
-                    .addComponent(exitButton))
-                .addGap(121, 121, 121))
+            .addGap(0, 769, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(19, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        // TODO add your handling code here:
+    private void startBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBActionPerformed
         currentnetwork = cyApplicationManager.getCurrentNetwork();
         currentnetworkview = cyApplicationManager.getCurrentNetworkView();
-        logicThread = new CliqueThread(currentnetwork, currentnetworkview);
+        //  start input validations on the network
+        
+        logicThread = new CliqueThread(this, currentnetwork, currentnetworkview, YESbutton.isSelected());
         logicThread.start();
-    }//GEN-LAST:event_startButtonActionPerformed
+    }//GEN-LAST:event_startBActionPerformed
 
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        // TODO add your handling code here:
+    private void helpBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpBActionPerformed
+        CliqueHelper help = new CliqueHelper();
+        help.setText(1);
+        help.setVisible(true);
+    }//GEN-LAST:event_helpBActionPerformed
+
+    private void exitBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBActionPerformed
         cliquecore.closecore();
         cliquecore.closeCliqueStartMenu();
-    }//GEN-LAST:event_exitButtonActionPerformed
-
+    }//GEN-LAST:event_exitBActionPerformed
+    
+    
+    public void startComputation(){
+        startB.setEnabled(false);
+        statusBar.setIndeterminate(true);
+        statusBar.setVisible(true);
+        statusLabel.setText("bron-kerbosch algorithm is running ......");
+    }
+    
+    public void endComputation(){
+        statusBar.setIndeterminate(false);
+        statusLabel.setText("<html> Have fun with Cliques ! <br> You might want to recompute with different inputs <html>");
+        startB.setEnabled(true);
+    }
+    
+    public void calculatingresult(String msg){
+        statusLabel.setText(msg);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton exitButton;
-    private javax.swing.JButton startButton;
+    private javax.swing.JRadioButton NObutton;
+    private javax.swing.JRadioButton YESbutton;
+    private javax.swing.JButton exitB;
+    private javax.swing.JLabel headingLabel;
+    private javax.swing.JButton helpB;
+    private javax.swing.JPanel helpExitPanel;
+    private javax.swing.JLabel netVariable;
+    private javax.swing.JPanel networkPanel;
+    private javax.swing.JPanel parentPanel;
+    private javax.swing.JPanel questionPanel;
+    private javax.swing.JButton startB;
+    private javax.swing.JProgressBar statusBar;
+    private javax.swing.JLabel statusLabel;
+    private javax.swing.JPanel statusPanel;
+    private javax.swing.JComboBox urlReadDropdown;
     // End of variables declaration//GEN-END:variables
 }
