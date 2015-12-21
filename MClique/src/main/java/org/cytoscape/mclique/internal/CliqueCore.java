@@ -22,7 +22,7 @@ public class CliqueCore {
     public CySwingApplication cyDesktopService;
     public CyServiceRegistrar cyServiceRegistrar;
     public CyActivator cyactivator;
-    private static CliqueGUI startmenu;
+    private static CliqueUI startmenu;
     public CliqueCore(CyActivator cyactivator){
         this.cyactivator = cyactivator;
         this.cyApplicationManager = cyactivator.cyApplicationManager;
@@ -49,8 +49,8 @@ public class CliqueCore {
         view = null;
     }
 
-    public CliqueGUI createCliqueStartMenu() {
-        CliqueGUI startmenu = new CliqueGUI(cyactivator, this);
+    public CliqueUI createCliqueStartMenu() {
+        CliqueUI startmenu = new CliqueUI(cyactivator, this);
         cyServiceRegistrar.registerService(startmenu, CytoPanelComponent.class, new Properties());
         CytoPanel cytopanelwest = cyDesktopService.getCytoPanel(CytoPanelName.WEST);
         int index = cytopanelwest.indexOfComponent(startmenu);
@@ -71,7 +71,7 @@ public class CliqueCore {
         return this.cyDesktopService;
     }
     
-    public static CliqueGUI getTiDieStartMenu(){
+    public static CliqueUI getTiDieStartMenu(){
         return startmenu;
     }
     

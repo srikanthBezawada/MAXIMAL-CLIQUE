@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.cytoscape.mclique.internal.CliqueGUI;
+import org.cytoscape.mclique.internal.CliqueUI;
 import org.cytoscape.mclique.internal.CyActivator;
 import org.cytoscape.model.CyEdge;
 import org.cytoscape.model.CyNetwork;
@@ -30,10 +30,10 @@ public class CliqueThread extends Thread{
     public CyNetwork currentnetwork;
     public CyNetworkView currentnetworkview;
     boolean YESb;
-    CliqueGUI menu;
+    CliqueUI menu;
     public CyNetwork subNetwork = null;
     
-    public CliqueThread(CliqueGUI menu, CyNetwork currentnetwork, CyNetworkView currentnetworkview, boolean YESb){
+    public CliqueThread(CliqueUI menu, CyNetwork currentnetwork, CyNetworkView currentnetworkview, boolean YESb){
         this.menu = menu;
         this.currentnetwork = currentnetwork;
         this.currentnetworkview = currentnetworkview;
