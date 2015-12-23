@@ -13,6 +13,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
+import javax.swing.JOptionPane;
 import org.cytoscape.application.CyApplicationManager;
 import org.cytoscape.application.swing.CySwingApplication;
 import org.cytoscape.application.swing.CytoPanelComponent;
@@ -289,7 +290,11 @@ public class CliqueUI extends javax.swing.JPanel implements CytoPanelComponent {
             currentnetworkview = cyApplicationManager.getCurrentNetworkView();
             logicThread = new CliqueThread(this, currentnetwork, currentnetworkview, YESbutton.isSelected());
             logicThread.start();
-        }   
+        } else{
+            startB.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "IMPORT a network first! ", "No Network found ", JOptionPane.WARNING_MESSAGE);
+            return;
+        }  
     }//GEN-LAST:event_startBActionPerformed
 
     private void helpBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpBActionPerformed
@@ -314,7 +319,7 @@ public class CliqueUI extends javax.swing.JPanel implements CytoPanelComponent {
     
     public void endComputation(){
         statusBar.setIndeterminate(false);
-        statusLabel.setText("<html> Have fun with Cliques ! <br> You might want to recompute with different inputs <html>");
+        statusLabel.setText("<html> Have fun extracting Cliques ! <br> You might want to recompute with different inputs <html>");
         startB.setEnabled(true);
     }
     
