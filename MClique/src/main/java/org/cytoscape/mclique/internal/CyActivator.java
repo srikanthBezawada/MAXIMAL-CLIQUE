@@ -8,6 +8,8 @@ import org.cytoscape.application.swing.CySwingApplication;
 import org.cytoscape.event.CyEventHelper;
 import org.cytoscape.model.CyNetworkFactory;
 import org.cytoscape.model.CyNetworkManager;
+import org.cytoscape.model.events.NetworkAddedListener;
+import org.cytoscape.model.events.NetworkDestroyedListener;
 import org.cytoscape.service.util.AbstractCyActivator;
 import org.cytoscape.service.util.CyServiceRegistrar;
 import org.cytoscape.view.model.CyNetworkViewFactory;
@@ -50,8 +52,10 @@ public class CyActivator extends AbstractCyActivator {
         this.eventHelper = getService(context, CyEventHelper.class);
         this.adapter = getService(context,CySwingAppAdapter.class);
         menuaction = new MenuAction(cyApplicationManager, "Mclique " + version, this);
-        Properties properties = new Properties();
-        registerAllServices(context, menuaction, properties);
+        NetworkEventsListener networkEventsListener = new NetworkEventsListener();
+        registerService(context,networkEventsListener,NetworkAddedListener.class, new Properties());
+        registerService(context,networkEventsListener,NetworkDestroyedListener.class, new Properties());
+        registerAllServices(context, menuaction, new Properties());
     }
 
     public CyServiceRegistrar getcyServiceRegistrar() {
