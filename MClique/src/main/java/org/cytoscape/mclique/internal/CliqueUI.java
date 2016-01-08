@@ -339,7 +339,7 @@ public class CliqueUI extends javax.swing.JPanel implements CytoPanelComponent {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel netVariable1;
-    private javax.swing.JComboBox networkComboBox;
+    protected javax.swing.JComboBox networkComboBox;
     private javax.swing.JPanel networkPanel;
     private javax.swing.JButton startB;
     private javax.swing.JProgressBar statusBar;
@@ -347,7 +347,7 @@ public class CliqueUI extends javax.swing.JPanel implements CytoPanelComponent {
     private javax.swing.JPanel statusPanel;
     private javax.swing.JPanel yesNoPanel;
     // End of variables declaration//GEN-END:variables
-    private void updateNetworkList() {
+    protected void updateNetworkList() {
         final Set<CyNetwork> networks = CyActivator.getcyNetworkManager().getNetworkSet();
         final SortedSet<String> networkNames = new TreeSet<String>();
 
@@ -370,16 +370,6 @@ public class CliqueUI extends javax.swing.JPanel implements CytoPanelComponent {
     
     public void addItemListener(final ItemListener newListener) {
         networkComboBox.addItemListener(newListener);
-    }
-    
-    public void handleEvent(NetworkDestroyedEvent e){
-        updateNetworkList();
-    }
-    
-    public void handleEvent(NetworkAddedEvent e){
-        CyNetwork net = e.getNetwork();
-        String title = net.getRow(net).get("name", String.class);
-        ((DefaultComboBoxModel)networkComboBox.getModel()).addElement(title); 	
     }
     
     public CyNetwork getSelectedNetwork() {
