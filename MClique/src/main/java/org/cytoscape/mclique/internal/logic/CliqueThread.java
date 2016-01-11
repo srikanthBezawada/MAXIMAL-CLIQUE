@@ -43,14 +43,17 @@ public class CliqueThread extends Thread{
     @Override
     public void run(){
         menu.startComputation();
-        UndirectedGraph<CyNode, Object> g = new SimpleGraph<CyNode, Object>(Object.class);
+        UndirectedGraph<CyNode, CyEdge> g = new SimpleGraph<CyNode, CyEdge>(CyEdge.class);
         List<CyNode> nodeList = currentnetwork.getNodeList();
         List<CyEdge> edgeList = currentnetwork.getEdgeList();
         for(CyNode n : nodeList){
             g.addVertex(n);
         }
         for(CyEdge e : edgeList){
-            g.addEdge(e.getSource(), e.getTarget());
+            if(e.getSource().equals(e.getTarget())){
+                continue; // removing self-loops
+            }
+            g.addEdge(e.getSource(), e.getTarget(),e);
         }
         BronKerboschCliqueFinder bcfinder = new BronKerboschCliqueFinder(g);
         List<Set<CyNode>> requiredNodeSets = (List<Set<CyNode>>) bcfinder.getBiggestMaximalCliques();
