@@ -119,7 +119,7 @@ public class CliqueUI extends javax.swing.JPanel implements CytoPanelComponent {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        yesNoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Extract BMClique as subnetwork"));
+        yesNoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Extract BMClique as subnetwork, default=NO"));
 
         buttonGroup1.add(YESbutton);
         YESbutton.setText("YES");
