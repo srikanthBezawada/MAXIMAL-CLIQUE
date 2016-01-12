@@ -10,7 +10,7 @@ import org.cytoscape.model.events.NetworkDestroyedListener;
 public class NetworkEventsListener implements NetworkAddedListener, NetworkDestroyedListener{
     public void handleEvent(NetworkAddedEvent e){
         CyNetwork net = e.getNetwork();
-        String title = net.getRow(net).get("name", String.class);
+        String title = net.getRow(net).get(CyNetwork.NAME, String.class);
         CliqueUI menu = CliqueCore.getTiDieStartMenu();
         ((DefaultComboBoxModel)menu.networkComboBox.getModel()).addElement(title); 	
     }

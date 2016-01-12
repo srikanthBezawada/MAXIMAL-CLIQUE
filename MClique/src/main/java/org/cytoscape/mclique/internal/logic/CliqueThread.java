@@ -105,11 +105,12 @@ public class CliqueThread extends Thread{
                 get_NewNetworkSelectedNodesAndEdgesTaskFactory();
             TaskIterator itr = f.createTaskIterator(network);
             CyActivator.adapter.getTaskManager().execute(itr);
+            /*
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CliqueThread.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             // set the name of the network
             this.menu.calculatingresult("Created! Renaming the network...");
             String currentNetworkName = network.getRow(network).get(CyNetwork.NAME, String.class);
