@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package org.cytoscape.mclique.internal;
 
 import java.awt.Component;
@@ -20,13 +14,11 @@ import org.cytoscape.application.swing.CytoPanelComponent;
 import org.cytoscape.application.swing.CytoPanelName;
 import org.cytoscape.mclique.internal.logic.CliqueThread;
 import org.cytoscape.model.CyNetwork;
-import org.cytoscape.model.events.NetworkAddedEvent;
-import org.cytoscape.model.events.NetworkDestroyedEvent;
 import org.cytoscape.view.model.CyNetworkView;
 
 /**
+ * @author SrikanthB
  *
- * @author Sony
  */
 public class CliqueUI extends javax.swing.JPanel implements CytoPanelComponent {
 
@@ -307,7 +299,7 @@ public class CliqueUI extends javax.swing.JPanel implements CytoPanelComponent {
     private void exitBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBActionPerformed
         // TODO add your handling code here:
         cliquecore.closecore();
-        cliquecore.closeCliqueStartMenu();
+        cliquecore.closeCliqueStartMenu(this);
     }//GEN-LAST:event_exitBActionPerformed
     
     public void startComputation(){

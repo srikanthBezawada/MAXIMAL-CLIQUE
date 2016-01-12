@@ -50,7 +50,7 @@ public class CliqueCore {
     }
 
     public CliqueUI createCliqueStartMenu() {
-        CliqueUI startmenu = new CliqueUI(cyactivator, this);
+        startmenu = new CliqueUI(cyactivator, this);
         cyServiceRegistrar.registerService(startmenu, CytoPanelComponent.class, new Properties());
         CytoPanel cytopanelwest = cyDesktopService.getCytoPanel(CytoPanelName.WEST);
         int index = cytopanelwest.indexOfComponent(startmenu);
@@ -58,8 +58,8 @@ public class CliqueCore {
         return startmenu;
     }
 
-    public void closeCliqueStartMenu() {
-        cyServiceRegistrar.unregisterService(startmenu, CytoPanelComponent.class);
+    public void closeCliqueStartMenu(CliqueUI menu) {
+        cyServiceRegistrar.unregisterService(menu, CytoPanelComponent.class);
     }
 
    
