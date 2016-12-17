@@ -274,7 +274,8 @@ public class MCliqueUI extends javax.swing.JPanel implements CytoPanelComponent,
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        helpButton.setForeground(new java.awt.Color(102, 255, 51));
+        helpButton.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        helpButton.setForeground(new java.awt.Color(51, 51, 51));
         helpButton.setText("Help");
         helpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,6 +283,7 @@ public class MCliqueUI extends javax.swing.JPanel implements CytoPanelComponent,
             }
         });
 
+        exitButton.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         exitButton.setForeground(new java.awt.Color(255, 0, 0));
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -297,16 +299,16 @@ public class MCliqueUI extends javax.swing.JPanel implements CytoPanelComponent,
             .addGroup(mainUIPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainUIPanelLayout.createSequentialGroup()
-                        .addComponent(helpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(statusPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(startB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(mainUIPanelLayout.createSequentialGroup()
                         .addComponent(networkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(networkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(networkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainUIPanelLayout.createSequentialGroup()
+                        .addComponent(helpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
         );
         mainUIPanelLayout.setVerticalGroup(
@@ -320,11 +322,11 @@ public class MCliqueUI extends javax.swing.JPanel implements CytoPanelComponent,
                 .addComponent(startB, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
+                .addGap(49, 49, 49)
                 .addGroup(mainUIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(helpButton)
                     .addComponent(exitButton))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
