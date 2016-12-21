@@ -85,13 +85,11 @@ public class MCliqueLogic extends Thread{
             }
         }
         
- 
-        
-        panel.resultsCalculated(cmcComplexes, network);
-        
         if(stop) {
             return;
         }
+        
+        panel.resultsCalculated(cmcComplexes, network);
         
         
         long endTime = System.currentTimeMillis();
