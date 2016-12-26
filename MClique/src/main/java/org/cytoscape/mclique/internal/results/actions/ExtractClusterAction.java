@@ -83,7 +83,7 @@ public class ExtractClusterAction extends AbstractAction {
                         maxSUID = net.getSUID();
                 }
                 CyNetwork newnet = this.resultViewer.getCyactivator().getService(CyNetworkManager.class).getNetwork(maxSUID);
-                newnet.getRow(newnet).set(CyNetwork.NAME, currentNetworkName + " MClique extracted " + this.resultViewer.getclustersExtracted());
+                newnet.getRow(newnet).set(CyNetwork.NAME, currentNetworkName + " MClique extracted - " + this.resultViewer.getclustersExtracted());
 
         }
 }
